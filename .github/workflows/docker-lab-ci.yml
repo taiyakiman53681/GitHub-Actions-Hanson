@@ -40,3 +40,7 @@ jobs:
       - name: Stop containers
         if: always()
         run: docker compose -f compose.yaml down
+      
+      - name: Explain what this lab teaches
+        run: echo "This lab covers on / jobs / steps / run / checkout."
+        
