@@ -1,0 +1,40 @@
+name: Lab 03 - Docker Compose
+
+on:
+  workflow_dispatch:
+
+jobs:
+  compose:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Show Docker info
+        run: |
+          docker --version
+          docker compose version
+
+      - name: Validate Compose file
+        run: docker compose config
+
+      - name: Build image
+        run: docker compose build
+
+      - name: Start app
+        run: docker compose up -d
+
+      - name: Check health endpoint
+        run: curl --fail http://127.0.0.1:3000/health
+
+      - name: Show containers
+        run: docker ps
+
+      - name: Show logs
+        if: always()
+        run: docker compose logs
+
+      - name: Stop app
+        if: always()
+        run: docker compose down

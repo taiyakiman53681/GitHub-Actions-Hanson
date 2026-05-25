@@ -1,0 +1,8 @@
+.git
+.DS_Store
+node_modules
+app/node_modules
+npm-debug.log
+infra/**/.terraform
+infra/**/terraform.tfstate
+infra/**/terraform.tfstate.backup

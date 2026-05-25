@@ -1,0 +1,29 @@
+name: Lab 01 - Basics
+
+on:
+  workflow_dispatch:
+
+jobs:
+  basics:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Show runner info
+        run: |
+          cat /etc/os-release
+          echo "GitHub Actions basics lab"
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Inspect repository
+        run: |
+          pwd
+          ls -la
+          ls -la app
+          ls -la docker
+
+      - name: Explain what this lab teaches
+        run: |
+          echo "This lab covers on / jobs / steps / run / checkout."
+

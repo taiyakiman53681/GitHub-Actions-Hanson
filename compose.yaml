@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: infra-docker-lab-app
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
