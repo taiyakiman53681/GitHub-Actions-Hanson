@@ -26,7 +26,18 @@ jobs:
         run: docker compose up -d
 
       - name: Check health endpoint
-        run: curl --fail http://127.0.0.1:3000/health
+        run: |
+          for i in $(seq 1 30); do
+            if curl --fail --silent --show-error http://127.0.0.1:3000/health; then
+              exit 0
+            fi
+
+            sleep 1
+          done
+
+          docker compose ps
+          docker compose logs
+          exit 1
 
       - name: Show containers
         run: docker ps
